@@ -29,4 +29,7 @@ __pycache__/
 .env.production
 medsiglip-448/
 
+best_model_fold5.pth
+medsam_seg_fold2_last.pt
+
 .venv/

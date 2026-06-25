@@ -92,7 +92,9 @@ def _init_segmentation_model(run_device: torch.device):
         unfreeze_last_n=2,
         device=run_device,
     ).to(run_device)
-    ckpt = torch.load(MODEL_PT, map_location=torch.device("cpu"))
+    # Load checkpoint with weights_only=False (unsafe) because checkpoint is trusted
+    # This bypasses the weights-only safety check introduced in PyTorch 2.6.
+    ckpt = torch.load(MODEL_PT, map_location=torch.device("cpu"), weights_only=False)
     state = ckpt["model"] if isinstance(ckpt, dict) and "model" in ckpt else ckpt
     model.load_state_dict(state, strict=False)
     model.eval()
