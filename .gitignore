@@ -27,3 +27,4 @@ local_uploads/
 __pycache__/
 .env
 .env.production
+medsiglip-448/
